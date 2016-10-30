@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-size: 100%;
+            color: #444;
+            background: rgb(253, 180, 86);
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Hiragino Sans GB W3', sans-serif;
+        }
+
+        @-webkit-keyframes spin {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #nav-container {
+            font-size: 2em;
+            font-weight: bold;
+            padding: 0.8em;
+        }
+
+        #nav-creation-contaioner {
+            color: rgb(255, 255, 255);
+            margin-left: 12%;
+        }
+
+        #nav-inspiration-contaioner {
+            color: rgb(75, 160, 210);
+            margin-left: 4%;
+
+            /* IE10、Firefox and Opera，IE9以及更早的版本不支持 */
+            animation-name: breath; /* 动画名称 */
+            animation-duration: 3s; /* 动画时长3秒 */
+            animation-timing-function: ease-in-out; /* 动画速度曲线：以低速开始和结束 */
+            animation-iteration-count: infinite; /* 播放次数：无限 */
+
+            /* Safari and Chrome */
+            -webkit-animation-name: breath; /* 动画名称 */
+            -webkit-animation-duration: 3s; /* 动画时长3秒 */
+            -webkit-animation-timing-function: ease-in-out; /* 动画速度曲线：以低速开始和结束 */
+            -webkit-animation-iteration-count: infinite; /* 播放次数：无限 */
+        }
+
+        @keyframes breath {
+            from {
+                opacity: 0.1;
+            }
+            /* 动画开始时的不透明度 */
+            50% {
+                opacity: 1;
+            }
+            /* 动画50% 时的不透明度 */
+            to {
+                opacity: 0.1;
+            }
+            /* 动画结束时的不透明度 */
+        }
+
+        @-webkit-keyframes breath {
+            from {
+                opacity: 0.1;
+            }
+            /* 动画开始时的不透明度 */
+            50% {
+                opacity: 1;
+            }
+            /* 动画50% 时的不透明度 */
+            to {
+                opacity: 0.1;
+            }
+            /* 动画结束时的不透明度 */
+        }
+
+        #left-container {
+            margin-left: 12%;
+            position: absolute;
+        }
+
+        #tool-container {
+            margin-left: 65%;
+            position: absolute;
+        }
+
+        #tool-container img {
+            margin: 2% 0;
+            padding: 1em;
+            vertical-align: middle;
+        }
+
+        .tool:hover {
+            border-radius: 50%;
+            background-color: rgb(254, 217, 172);
+            box-shadow: 1px 1px 1px 1px rgb(206, 162, 106);
+        }
+
+        #tubiao-container {
+            position: absolute;
+        }
+
+        #tubiao-container #tubiao-right-container {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            z-index: 998;
+        }
+    </style>
+</head>
+<body>
+<div id="tubiao-container">
+    <img id="tubiao-right-container" src="../static/image/logo/logo_orange.png">
+</div>
+<div id="nav-container">
+    <span id="nav-creation-contaioner">Creation</span>
+    <span id="nav-inspiration-contaioner">Inspiration</span>
+</div>
+<div id="left-container">
+    <canvas class="animated" id="canvas" width="375" height="585"></canvas>
+</div>
+<div id="tool-container">
+    <img id="expland1" src="../static/image/four/组%2012.png" style="opacity: 0">
+    <img class="tool" id="tool1" src="../static/image/four/拖拽.png">
+    <img id="expland2" src="../static/image/four/组%2011.png" style="opacity: 0">
+    <img class="tool" id="tool2" src="../static/image/four/背景.png">
+    <img id="expland3" src="../static/image/four/组%2010.png" style="opacity: 0">
+    <img class="tool" id="tool3" src="../static/image/four/素材.png">
+    <img id="expland4" src="../static/image/four/组%2011%20拷贝.png" style="opacity: 0">
+    <img class="tool" id="tool4" src="../static/image/four/文字.png">
+    <img id="expland5" src="../static/image/four/组%2012%20拷贝.png" style="opacity: 0">
+    <img class="tool" id="tool5" src="../static/image/four/联想.png">
+</div>
+</body>
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script>
+    var canvas;
+    var context;
+
+    window.onload = function () {
+        canvas = document.getElementById("canvas");
+        context = canvas.getContext("2d");
+        setBgColor("rgb(136,218,238)");
+
+        {% for element in elements %}
+            {% for i in range(0,element.n) %}
+                var img = new Image();
+                img.onload = function () {
+                    context.drawImage(img, {{element.x}}, {{element.y}}, 80, 60);
+                };
+                 img.src = "{{element.path}}";
+            {% endfor %}
+        {% endfor %}
+
+//        var img1 = new Image();
+//        img1.onload = function () {
+//            context.drawImage(img1, 10, 300, 375, 80);
+//        };
+//        img1.src = "static/image/demo/shan.svg";
+//
+//        var img2 = new Image();
+//        img2.onload = function () {
+//            context.drawImage(img2, 10, 375, 375, 18);
+//        };
+//        img2.src = "static/image/demo/caodi.svg";
+//
+//        var img3 = new Image();
+//        img3.onload = function () {
+//            context.drawImage(img3, 10, 305, 70, 80);
+//        };
+//        img3.src = "static/image/demo/jianzhu.svg";
+//
+//        var img4 = new Image();
+//        img4.onload = function () {
+//            context.drawImage(img4, 300, 150, 55, 50);
+//        };
+//        img4.src = "static/image/demo/taiyang.svg";
+//
+//        var img5 = new Image();
+//        img5.onload = function () {
+//            context.drawImage(img5, 100, 180, 40, 15);
+//        };
+//        img5.src = "static/image/demo/yun1.svg";
+//
+//        var img6 = new Image();
+//        img6.onload = function () {
+//            context.drawImage(img6, 290, 180, 40, 15);
+//        };
+//        img6.src = "static/image/demo/yun2.svg";
+//
+//        var img7 = new Image();
+//        img7.onload = function () {
+//            context.drawImage(img7, 150, 170, 40, 15);
+//        };
+//        img7.src = "static/image/demo/yun2.svg";
+//
+//        var img8 = new Image();
+//        img8.onload = function () {
+//            context.drawImage(img8, 100, 340, 30, 50);
+//        };
+//        img8.src = "static/image/demo/猫.svg";
+//
+//        var img9 = new Image();
+//        img9.onload = function () {
+//            context.drawImage(img9, 320, 340, 30, 50);
+//        };
+//        img9.src = "static/image/demo/zhiwu.svg";
+
+        console.log("{{elements}}");
+    };
+
+    function setBgColor(color) {
+        context.fillStyle = color;
+        context.fillRect(0, 0, 375, 585);
+    }
+
+</script>
+<script>
+    $("#tool1").on("mouseover mouseout", function (event) {
+        if (event.type == "mouseover") {
+            $("#expland1").css("opacity", "0.8");
+        } else if (event.type == "mouseout") {
+            $("#expland1").css("opacity", "0");
+        }
+    });
+    $("#tool2").on("mouseover mouseout", function (event) {
+        if (event.type == "mouseover") {
+            $("#expland2").css("opacity", "0.8");
+        } else if (event.type == "mouseout") {
+            $("#expland2").css("opacity", "0");
+        }
+    });
+    $("#tool3").on("mouseover mouseout", function (event) {
+        if (event.type == "mouseover") {
+            $("#expland3").css("opacity", "0.8");
+        } else if (event.type == "mouseout") {
+            $("#expland3").css("opacity", "0");
+        }
+    });
+    $("#tool4").on("mouseover mouseout", function (event) {
+        if (event.type == "mouseover") {
+            $("#expland4").css("opacity", "0.8");
+        } else if (event.type == "mouseout") {
+            $("#expland4").css("opacity", "0");
+        }
+    });
+    $("#tool5").on("mouseover mouseout", function (event) {
+        if (event.type == "mouseover") {
+            $("#expland5").css("opacity", "0.8");
+        } else if (event.type == "mouseout") {
+            $("#expland5").css("opacity", "0");
+        }
+    });
+</script>
+</html>

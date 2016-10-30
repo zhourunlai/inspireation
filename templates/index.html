@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inspireation</title>
+    <link rel="stylesheet" href="../static/css/animate.min.css">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-size: 100%;
+            color: #444;
+            background: transparent;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Hiragino Sans GB W3', sans-serif;
+        }
+
+        @-webkit-keyframes spin {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #main-left-container {
+            position: absolute;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background-color: rgb(198, 259, 254);
+        }
+
+        #main-right-container {
+            position: absolute;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            background-color: rgb(253, 180, 85);
+        }
+
+        #oval-left-container {
+            position: absolute;
+            right: -1px;
+            top: 20%;
+            z-index: 2;
+        }
+
+        #oval-right-container {
+            position: absolute;
+            left: -1px;
+            top: 20%;
+            z-index: 2;
+        }
+
+        #logo-left-container {
+            position: absolute;
+            right: 1%;
+            top: 40%;
+            z-index: 4;
+        }
+
+        #logo-right-container {
+            position: absolute;
+            left: 1%;
+            top: 40%;
+            z-index: 4;
+        }
+
+        #icon-left-container {
+            position: absolute;
+            left: 35%;
+            top: 70%;
+        }
+
+        #icon-right-container {
+            position: absolute;
+            right: 35%;
+            top: 70%;
+        }
+
+        #text-left-container {
+            position: absolute;
+            left: 20%;
+            top: 75%;
+            color: rgb(0, 72, 123);
+            font-size: 1.5rem;
+            border: 0.2rem rgb(131, 214, 224) solid;
+            border-radius: 0.8rem;
+            padding: 0 0.5rem;
+        }
+
+        #text-right-container {
+            position: absolute;
+            right: 20%;
+            top: 75%;
+            color: rgb(255, 252, 246);
+            font-size: 1.5rem;
+            border: 0.2rem rgb(253, 142, 54) solid;
+            border-radius: 0.8rem;
+            padding: 0 0.5rem;
+        }
+
+        #tubiao-container {
+            position: absolute;
+        }
+
+        #tubiao-container #tubiao-left-container {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+<div id="tubiao-container">
+    <img id="tubiao-left-container" src="../static/image/logo/logo_blue.png">
+    <!--<img id="tubiao-right-container" src="../static/image/logo/logo_orange.png">-->
+</div>
+<div id="main-left-container">
+    <embed id="oval-left-container" src="../static/image/one/椭圆%201.svg" type="image/svg+xml"/>
+    <img class="animated zoomInLeft" id="logo-left-container" src="../static/image/one/Inspir.png">
+    <span>
+        <img id="icon-left-container" src="../static/image/one/圣诞老人png.png">
+        <p id="text-left-container">你的灵感来源采集</p>
+    </span>
+</div>
+
+<div id="main-right-container">
+    <embed id="oval-right-container" src="../static/image/one/椭圆%202.svg" type="image/svg+xml"/>
+    <img class="animated zoomInRight" id="logo-right-container" src="../static/image/one/eation.png">
+    <span>
+        <img id="icon-right-container" src="../static/image/one/创作%20.png">
+        <p id="text-right-container">你的创作编辑工具</p>
+    </span>
+</div>
+</body>
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script>
+    $("#main-left-container").on("mouseover mouseout", function (event) {
+        if (event.type == "mouseover") {
+            $("#oval-left-container").css({
+                "transform": "scale(1.2, 1.2) rotate(-10deg)",
+                "transform-origin": "right",
+                "transition-duration": "500ms",
+                "z-index": "3"
+            });
+            $("#main-right-container").css({
+                "opacity": 0.8
+            });
+            $("#icon-left-container").css({
+                "transform": "scale(1.2, 1.2) rotate(-10deg)",
+                "transition-duration": "500ms"
+            });
+            $("#text-left-container").css({
+                "-webkit-transition": "border linear .2s,-webkit-box-shadow linear .5s",
+                "-webkit-box-shadow": "0 0 18px rgb(20,117,193)",
+            });
+        } else if (event.type == "mouseout") {
+            $("#oval-left-container").css({
+                "transform": "scale(1, 1)",
+                "transform-origin": "left",
+                "transition-duration": "500ms",
+                "z-index": "2"
+            });
+            $("#main-right-container").css({
+                "opacity": 1
+            });
+            $("#icon-left-container").css({
+                "transform": "scale(1, 1)",
+                "transition-duration": "500ms"
+            });
+            $("#text-left-container").css({
+                "-webkit-transition": "border linear .2s,-webkit-box-shadow linear .5s",
+                "-webkit-box-shadow": "none"
+            });
+        }
+    });
+    $("#main-right-container").on("mouseover mouseout", function (event) {
+        if (event.type == "mouseover") {
+            $("#oval-right-container").css({
+                "transform": "scale(1.2, 1.2) rotate(10deg)",
+                "transform-origin": "left",
+                "transition-duration": "500ms",
+                "z-index": "3"
+            });
+            $("#main-left-container").css({
+                "opacity": 0.8
+            });
+            $("#icon-right-container").css({
+                "transform": "scale(1.2, 1.2) rotate(10deg)",
+                "transition-duration": "500ms"
+            });
+            $("#text-right-container").css({
+                "-webkit-transition": "border linear .2s,-webkit-box-shadow linear .5s",
+                "-webkit-box-shadow": "0 0 18px rgb(193,56,20)"
+            });
+        } else if (event.type == "mouseout") {
+            $("#oval-right-container").css({
+                "transform": "scale(1, 1)",
+                "transform-origin": "right",
+                "transition-duration": "500ms",
+                "z-index": "2"
+            });
+            $("#main-left-container").css({
+                "opacity": 1
+            });
+            $("#icon-right-container").css({
+                "transform": "scale(1, 1)",
+                "transition-duration": "500ms"
+            });
+            $("#text-right-container").css({
+                "-webkit-transition": "border linear .2s,-webkit-box-shadow linear .5s",
+                "-webkit-box-shadow": "none"
+            });
+        }
+    });
+
+    $("#main-left-container").on("click", function () {
+        window.location.href = "/inspiration";
+    });
+
+    $("#main-right-container").on("click", function () {
+        window.location.href = "/creation";
+    });
+</script>
+</html>

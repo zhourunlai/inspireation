@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inspireation</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+    <link rel="stylesheet" href="../static/css/animate.min.css">
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/jscolor.min.js"></script>
+    <script>
+        var canvas;
+        var context;
+
+        window.onload = function () {
+            canvas = document.getElementById("canvas");
+            context = canvas.getContext("2d");
+
+            setBg();
+        };
+
+        num = 0;
+
+        function setBg() {
+//            var img = new Image();
+//            img.onload = function () {
+//                context.drawImage(img, 0, 0, 460, 400);
+//            };
+//            img.src = 'element/beijing_a4.svg';
+            context.fillStyle = "#FFFFFF";
+            context.fillRect(0, 0, 460, 400);
+        }
+
+        function sendText() {
+            content = document.getElementById("content").value;
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/handle?content=' + content, true);
+            xhr.onload = function (e) {
+                if (this.status == 200) {
+                    console.log(this.responseText);
+                    obj = JSON.parse(this.responseText);
+                    var img = new Image();
+                    img.onload = function () {
+                        context.drawImage(img, (num - 60) % 400, 300 - ((num - 60) / 400) * 80, 80, 60);
+                    };
+                    img.src = obj.result.path;
+                    document.getElementById('query').innerText = obj.result.query;
+
+                    $("#canvas").addClass('fadeIn')
+
+                    var canvasOffset = $("#canvas").offset();
+                    var offsetX = canvasOffset.left;
+                    var offsetY = canvasOffset.top;
+                    var canvasWidth = canvas.width;
+                    var canvasHeight = canvas.height;
+                    var isDragging = false;
+
+                    function handleMouseDown(e) {
+                        canMouseX = parseInt(e.clientX - offsetX);
+                        canMouseY = parseInt(e.clientY - offsetY);
+                        // set the drag flag
+                        isDragging = true;
+                    }
+
+                    function handleMouseUp(e) {
+                        canMouseX = parseInt(e.clientX - offsetX);
+                        canMouseY = parseInt(e.clientY - offsetY);
+                        // clear the drag flag
+                        isDragging = false;
+                    }
+
+                    function handleMouseOut(e) {
+                        canMouseX = parseInt(e.clientX - offsetX);
+                        canMouseY = parseInt(e.clientY - offsetY);
+                        // user has left the canvas, so clear the drag flag
+                        //isDragging=false;
+                    }
+
+                    function handleMouseMove(e) {
+                        canMouseX = parseInt(e.clientX - offsetX);
+                        canMouseY = parseInt(e.clientY - offsetY);
+                        // if the drag flag is set, clear the canvas and draw the image
+                        if (isDragging) {
+                            context.clearRect(0, 0, canvasWidth, canvasHeight);
+                            context.drawImage(img, canMouseX - 128 / 2, canMouseY - 120 / 2, 80, 60);
+                        }
+                    }
+
+                    $("#canvas").mousedown(function (e) {
+                        handleMouseDown(e);
+                    });
+                    $("#canvas").mousemove(function (e) {
+                        handleMouseMove(e);
+                    });
+                    $("#canvas").mouseup(function (e) {
+                        handleMouseUp(e);
+                    });
+                    $("#canvas").mouseout(function (e) {
+                        handleMouseOut(e);
+                    });
+                }
+            };
+            xhr.send(content);
+            num += 60
+        }
+
+        function changeImage() {
+            context.clearRect(0, 0, 460, 400);
+            setBg();
+            num = 0;
+        }
+
+        function saveImage() {
+            var dataURL = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+            document.getElementById('canvasImg').src = dataURL;
+        }
+
+        function downloadImage() {
+            window.location.href = document.getElementById('canvasImg').src;
+        }
+
+        function setTextColor(picker) {
+            context.fillStyle = '#' + picker.toString();
+            context.fillRect(0, 0, 460, 400);
+        }
+    </script>
+</head>
+<body>
+
+<div class="say">
+    <textarea id="content" placeholder="看万山红遍，层林尽染；漫江碧透，百舸争流。"></textarea>
+    <button id="submit" onclick="sendText()">确认</button>
+</div>
+
+<div class="keyword">
+    <span>关键词：
+    <p id="query">？</p>
+    </span>
+    <span>联想词：
+    <p id="assicoate">？</p>
+    </span>
+</div>
+
+<div class="image">
+    <canvas class="animated" id="canvas" width="460" height="400" style="border:1px solid #c3c3c3;"></canvas>
+    <button class="jscolor {valueElement:'chosen-value', onFineChange:'setTextColor(this)'}">选择颜色</button>
+    <button id="save" onclick="saveImage()">保存</button>
+    <button id="change" onclick="changeImage()">换一张</button>
+    <img id="canvasImg">
+    <button onclick="downloadImage()">下载</button>
+</div>
+    
+</body>
+</html>

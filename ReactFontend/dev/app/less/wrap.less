@@ -1,0 +1,102 @@
+@import "config";
+
+#app-container {
+  width: 100%;
+  min-height: 100%;
+}
+#wrap-container{
+  position: absolute;
+  width: 100%;
+  min-height: 100%;
+}
+.wrap{
+  position:absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+}
+
+.left{
+  position: absolute;
+  left: 0;
+}
+
+.wrap-left{
+  background: #c4f9fe;
+}
+.rect-left{
+  border:2px #9ed9eb solid;
+  border-right: none;
+}
+
+.right{
+  position: absolute;
+  right: 0;
+}
+
+.wrap-right{
+  background: #ffb54b;
+}
+.rect-right{
+  border:2px #ffd18f solid;
+  border-left:none;
+}
+
+.rect-container{
+  position: absolute;
+  width: 80%;
+  height: 60%;
+  top: 15%;
+}
+.circle{
+  position: absolute;
+  height: 52vh;
+  width: 26vh;
+  top: 4vh;
+}
+.circle-left{
+  background: url("@{img-url}/wrap/circle_left.png") no-repeat 0 0;
+  background-size: auto 100%;
+}
+.circle-right{
+  background: url("@{img-url}/wrap/circle_right.png") no-repeat -26vh 0;
+  background-size: auto 100%;
+}
+.rect-title{
+  position: absolute;
+  height: 30%;
+  top: 35%;
+  margin: 0 1%;
+  z-index: 9;
+}
+.wrap-bottom-icon{
+  position: absolute;
+  width: 36%;
+  max-width: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 4%;
+}
+.top-box{
+  position: absolute;
+  top: 2%;
+  width: 30%;
+  text-align: center;
+  img{
+    width: 38%;
+  }
+  span{
+    margin-top: 5%;
+  }
+}
+.account{
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+.account-org{
+  color: #fff;
+  text-shadow: 0 0 20px #ff5500 ;
+}
+.account-blue{
+  color: @text-lightblue;
+}

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Inspiration</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            font-size: 100%;
+            color: #444;
+            background: rgb(196, 247, 252);
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', 'Hiragino Sans GB W3', sans-serif;
+        }
+
+        @-webkit-keyframes spin {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #nav-container {
+            font-size: 2em;
+            font-weight: bold;
+            padding: 0.8em;
+        }
+
+        #nav-creation-contaioner {
+            color: rgb(253, 180, 85);
+            margin-left: 4%;
+
+            /* IE10、Firefox and Opera，IE9以及更早的版本不支持 */
+            animation-name: breath; /* 动画名称 */
+            animation-duration: 3s; /* 动画时长3秒 */
+            animation-timing-function: ease-in-out; /* 动画速度曲线：以低速开始和结束 */
+            animation-iteration-count: infinite; /* 播放次数：无限 */
+
+            /* Safari and Chrome */
+            -webkit-animation-name: breath; /* 动画名称 */
+            -webkit-animation-duration: 3s; /* 动画时长3秒 */
+            -webkit-animation-timing-function: ease-in-out; /* 动画速度曲线：以低速开始和结束 */
+            -webkit-animation-iteration-count: infinite; /* 播放次数：无限 */
+        }
+
+        #nav-inspiration-contaioner {
+            color: rgb(255, 255, 255);
+            margin-left: 12%;
+        }
+
+        #yuan-container {
+            margin-left: -150px;
+            color: white;
+            font-weight: bold;
+        }
+
+        #yuan-container img {
+            width: 20%;
+            position: absolute;
+        }
+
+        #yuan-container #type1 {
+            position: absolute;
+            left: 20px;
+            top: 150px;
+            padding: 0.25em;
+        }
+
+        #yuan-container #type2 {
+            position: absolute;
+            left: 30px;
+            top: 200px;
+            padding: 0.25em;
+        }
+
+        #yuan-container #type3 {
+            position: absolute;
+            left: 20px;
+            top: 250px;
+            padding: 0.25em;
+        }
+
+        #yuan-container #type1:hover {
+            border: 0.1em rgb(37, 98, 133) solid;
+            border-radius: 50%;
+            background-color: rgb(37, 98, 133);
+            box-shadow: 0.1em 0.1em 0.1em 0.1em rgb(70, 70, 70);
+        }
+
+        #yuan-container #type2:hover {
+            border: 0.1em rgb(37, 98, 133) solid;
+            border-radius: 50%;
+            background-color: rgb(37, 98, 133);
+            box-shadow: 0.1em 0.1em 0.1em 0.1em rgb(70, 70, 70);
+        }
+
+        #yuan-container #type3:hover {
+            border: 0.1em rgb(37, 98, 133) solid;
+            border-radius: 50%;
+            background-color: rgb(37, 98, 133);
+            box-shadow: 0.1em 0.1em 0.1em 0.1em rgb(70, 70, 70);
+        }
+
+        #wall-container {
+            margin-left: 150px;
+        }
+
+        #wall-container img {
+            width: 20%;
+        }
+
+        @keyframes breath {
+            from {
+                opacity: 0.1;
+            }
+            /* 动画开始时的不透明度 */
+            50% {
+                opacity: 1;
+            }
+            /* 动画50% 时的不透明度 */
+            to {
+                opacity: 0.1;
+            }
+            /* 动画结束时的不透明度 */
+        }
+
+        @-webkit-keyframes breath {
+            from {
+                opacity: 0.1;
+            }
+            /* 动画开始时的不透明度 */
+            50% {
+                opacity: 1;
+            }
+            /* 动画50% 时的不透明度 */
+            to {
+                opacity: 0.1;
+            }
+            /* 动画结束时的不透明度 */
+        }
+
+        .uptop {
+            position: fixed;
+            bottom: -10px;
+            right: -20px;
+            z-index: 99;
+            -webkit-transition: all .5s;
+            -moz-transition: all .5s;
+            -ms-transition: all .5s;
+            -o-transition: all .5s;
+            transition: all .5s;
+        }
+
+        .uptop img {
+            width: 70%;
+            cursor: pointer;
+        }
+
+        #tubiao-container {
+            position: absolute;
+        }
+
+        #tubiao-container #tubiao-left-container {
+            position: absolute;
+            left: 20px;
+            top: 10px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+<div id="tubiao-container">
+    <img id="tubiao-left-container" src="../static/image/logo/logo_blue.png">
+</div>
+<div id="nav-container">
+    <span id="nav-inspiration-contaioner">Inspiration</span>
+    <span id="nav-creation-contaioner">Creation</span>
+</div>
+<div id="yuan-container">
+    <img src="../static/image/two/圆1完整png.png">
+    <span id="type1">H5</span>
+    <span id="type2">海报</span>
+    <span id="type3">排版</span>
+</div>
+<div id="wall-container">
+    <img src="../static/image/two/1.png">
+    <img src="../static/image/two/2.png">
+    <img src="../static/image/two/3.png">
+    <img src="../static/image/two/4.png">
+    <img src="../static/image/two/5.png">
+    <img src="../static/image/two/6.png">
+</div>
+<div class="uptop" id="uptop">
+    <img src="../static/image/two/置顶.png" id="to-top">
+</div>
+</body>
+<script type="text/javascript" src="../static/js/jquery.min.js"></script>
+<script>
+    window.onscroll = function () {
+        var t = document.documentElement.scrollTop || document.body.scrollTop;  //获取距离页面顶部的距离
+        var uptop = document.getElementById("uptop"); //获取div元素
+        if (t >= 300) { //当距离顶部超过300px时
+            uptop.style.bottom = 30 + 'px';//使div距离底部30px，也就是向上出现
+        } else { //如果距离顶部小于300px
+            uptop.style.bottom = -10 + 'px';//使div向下隐藏
+        }
+    };
+    var top = document.getElementById("to-top");//获取图片元素var
+    timer = null;
+    top.onclick = function () { //点击图片时触发点击事件
+        timer = setInterval(function () { //设置一个计时器
+            var ct = document.documentElement.scrollTop || document.body.scrollTop; //获取距离顶部的距离
+            ct -= 10;
+            if (ct > 0) {//如果与顶部的距离大于零
+                window.scrollTo(0, ct);//向上移动10px
+            } else {//如果距离小于等于零
+                window.scrollTo(0, 0);//移动到顶部
+                clearInterval(timer);//清除计时器
+            }
+        }, 10);
+        //隔10ms执行一次前面的function，展现一种平滑滑动效果
+    };
+    //    function highlight() {
+    //        this.css({
+    //            "border": "0.1em rgb(37, 98, 133) solid",
+    //            "border-radius": "50%",
+    //            "background-color": "rgb(37, 98, 133)",
+    //            "box-shadow": "0.1em 0.1em 0.1em 0.1em rgb(70, 70, 70)",
+    //        });
+    //    }
+</script>
+</html>
